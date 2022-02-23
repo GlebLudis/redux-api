@@ -23,6 +23,7 @@ module.exports = {
     "no-return-assign": "off",
     "no-shadow": "off",
     "@typescript-eslint/no-var-requires": 0,
+    "default-param-last": "off",
   },
   plugins: ["jest", "@typescript-eslint"],
 };

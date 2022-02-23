@@ -1,12 +1,25 @@
-import { Action, Reducer } from "./configureStore";
+import { Reducer } from "./configureStore";
 
-export function combineReducers(
-  reducers: Record<string, Reducer<any, Action>>
-): (state: any, action: Action) => Record<string, any> {
-  return function combine(state: any, action: Action): Record<string, any> {
-    return Object.keys(reducers).reduce((combineStore: any, key: string) => {
-      combineStore[key] = reducers[key](state ? state[key] : undefined, action);
-      return combineStore;
-    }, {});
+export type Reducers<State, Action> = {
+  [key: string]: Reducer<State, Action> | any;
+};
+
+export type States = {
+  [key: string]: any;
+};
+
+export function combineReducers<State, Action>(
+  reducersMap: Reducers<State, Action> = {}
+): any {
+  const enteris = Object.entries(reducersMap);
+
+  return (state: State | any, action: Action) => {
+    const result: States = {};
+
+    enteris.forEach((item) => {
+      const [key, reducer] = item;
+      result[key] = reducer(state && state[key], action);
+    });
+    return result;
   };
 }

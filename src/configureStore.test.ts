@@ -22,7 +22,7 @@ describe("configureStore", () => {
 
     it("calculates new state with reducer call", () => {
       const action1 = { type: "xxx" };
-      const action2 = { type: "yyyy" };
+      const action2 = { type: "yyy" };
       const reducer = jest.fn((state = 1) => state + 1);
       const store = configureStore(reducer);
       store.dispatch(action1);
