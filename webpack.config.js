@@ -1,22 +1,22 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: "./src/index.ts",
   resolve: {
-    extensions: ['.js', '.ts'],
+    extensions: [".js", ".ts"],
   },
   output: {
-    filename: 'script.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: "script.js",
+    path: path.resolve(__dirname, "dist"),
     environment: {
       arrowFunction: false,
     },
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'public/index.html',
+      template: "public/index.html",
     }),
     new MiniCssExtractPlugin(),
   ],
@@ -26,15 +26,15 @@ module.exports = {
         test: /\.m?ts$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: [['@babel/preset-env', { targets: 'ie 11' }]],
+            presets: [["@babel/preset-env", { targets: "ie 11" }]],
           },
         },
       },
       {
         test: /\.(sc|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
     ],
   },
