@@ -19,7 +19,7 @@ export type Store<State = any> = {
 
 export function configureStore<State>(
   reducer: Reducer<State, Action>,
-  initialState?: State
+  initialState?: State,
 ): Store {
   let state = initialState;
   const subscribeFunctions: SetCb = new Set();
@@ -48,5 +48,3 @@ export function configureStore<State>(
     },
   };
 }
-
-

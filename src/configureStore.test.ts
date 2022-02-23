@@ -1,8 +1,8 @@
-import {Action, configureStore, Reducer, Store} from "./configureStore";
+import { configureStore } from './configureStore';
 
-describe("configureStore", () => {
-  describe("public interface", () => {
-    it("generates store with reducer", () => {
+describe('configureStore', () => {
+  describe('public interface', () => {
+    it('generates store with reducer', () => {
       const state = 2;
       const store = configureStore(() => state);
       expect(store.getState).toBeInstanceOf(Function);
@@ -13,16 +13,16 @@ describe("configureStore", () => {
     });
   });
 
-  describe("functional interface", () => {
-    it("returns state based on initial state", () => {
-      const state = { name: "Bob" };
+  describe('functional interface', () => {
+    it('returns state based on initial state', () => {
+      const state = { name: 'Bob' };
       expect(configureStore(() => null).getState()).toBe(undefined);
       expect(configureStore(() => null, state).getState()).toBe(state);
     });
 
-    it("calculates new state with reducer call", () => {
-      const action1 = { type: "xxx" };
-      const action2 = { type: "yyyy" };
+    it('calculates new state with reducer call', () => {
+      const action1 = { type: 'xxx' };
+      const action2 = { type: 'yyyy' };
       const reducer = jest.fn((state = 1) => state + 1);
       const store = configureStore(reducer);
       store.dispatch(action1);
@@ -32,6 +32,5 @@ describe("configureStore", () => {
       expect(reducer).toHaveBeenCalledWith(2, action2);
       expect(store.getState()).toBe(3);
     });
-
   });
 });
